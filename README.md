@@ -25,7 +25,7 @@ and leaves a symlink behind, so Claude reads and writes memory exactly as before
 {
   "hooks": {
     "SessionStart": [
-      { "hooks": [{ "type": "command", "command": "$HOME/claude-memory/sync.sh", "async": true, "timeout": 60 }] }
+      { "hooks": [{ "type": "command", "command": "$HOME/claude-memory/sync.sh", "timeout": 15 }] }
     ],
     "SessionEnd": [
       { "hooks": [{ "type": "command", "command": "$HOME/claude-memory/sync.sh", "timeout": 30 }] }
@@ -35,7 +35,8 @@ and leaves a symlink behind, so Claude reads and writes memory exactly as before
 ```
 
 Changes are pushed when a session ends (`/exit`, Ctrl+C/D, `/clear`). If a session dies without ending
-cleanly, the next session start picks the changes up.
+cleanly, the next session start picks the changes up. If memory isn't reaching the remote — no remote set,
+or the last push failed — a warning shows when the next session starts.
 
 ## Add a project
 
