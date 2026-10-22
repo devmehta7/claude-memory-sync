@@ -5,7 +5,6 @@
   git add -A
   git diff --cached --quiet || git commit -q -m "sync memory $(date '+%Y-%m-%d %H:%M')"
   git rev-parse -q --verify '@{u}' >/dev/null || exit 0   # no remote yet
-  git pull -q --rebase || git rebase --abort
   [ -n "$(git log '@{u}..' --oneline)" ] && git push -q
 } >> "$HOME/.claude/memory-sync.log" 2>&1
 exit 0

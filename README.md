@@ -11,7 +11,7 @@ and leaves a symlink behind, so Claude reads and writes memory exactly as before
 |---|---|
 | `projects.txt` | The projects to sync, one path per line, relative to `$HOME` |
 | `link.sh` | Moves each project's memory into this repo and symlinks it back. Safe to re-run |
-| `sync.sh` | Commits, pulls and pushes changes. Run by Claude Code hooks; logs to `~/.claude/memory-sync.log` |
+| `sync.sh` | Commits and pushes changes. Run by Claude Code hooks; logs to `~/.claude/memory-sync.log` |
 
 ## Setup
 
@@ -51,6 +51,6 @@ project now lives at a different path, update its line in `projects.txt` first.
 
 - Each project's memory folder is named after the project's folder, so two projects with the same folder
   name (`~/work/api` and `~/personal/api`) can't both be synced. `link.sh` stops and says so.
-- If two machines edit the same memory file before syncing, the pull is aborted and the push fails —
-  check the log and resolve it with git by hand.
+- One machine at a time. It's a backup, not a live sync: `sync.sh` only pushes, so a second machine
+  pushing to the same repo gets rejected (see the log).
 - macOS and Linux. Needs `bash` and `git`, nothing else.
