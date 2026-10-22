@@ -1,0 +1,4 @@
+# Projects whose Claude Code memory is synced by this repo.
+# One path per line, relative to $HOME. Run ./link.sh after editing.
+# Example:
+# code/my-project
